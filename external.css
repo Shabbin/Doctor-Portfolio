@@ -1,0 +1,35 @@
+body {
+    background-color: #f2f2f2;
+  }
+  
+  .typing-effect {
+    animation: typing 3s steps(40, end);
+  }
+  
+  @keyframes typing {
+    from {
+      width: 0;
+    }
+  }
+  
+  .typing-effect h1 {
+    margin-bottom: 10px;
+    font-size: 36px;
+  }
+  
+  .typing-effect p {
+    margin: 0;
+    font-size: 18px;
+  }
+  
+  .animated-image img {
+    animation: slide-in 1s ease-out;
+  }
+  
+  @keyframes slide-in {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+  }
+  

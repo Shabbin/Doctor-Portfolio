@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Text and Image Layout with Typing Animation</title>
+<style>
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+  }
+  
+  .left-side {
+    flex: 1;
+    padding-right: 20px;
+  }
+  
+  .right-side {
+    max-width: 50%;
+  }
+
+  .right-side img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  #colors {
+    color: orange;
+  }
+
+  .hs {
+    font-size: 48px;
+    overflow: hidden; /* Ensures the typing animation works */
+    white-space: nowrap; /* Prevents the name from wrapping */
+  }
+
+  /* Animation for text and image */
+  .left-side, .right-side {
+    animation: slideIn 1s ease forwards;
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(-50%);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="left-side">
+    <h2 class="hs">Mohammad <span id="colors"></span></h2>
+    <p>This is some sample text on the left side.</p>
+    <p>You can add more content here.</p>
+  </div>
+  <div class="right-side">
+    <img src="pic.jpg" alt="Sample Image">
+  </div>
+</div>
+
+<script>
+  // JavaScript to start the typing animation after the document has loaded
+  document.addEventListener('DOMContentLoaded', function () {
+    var nameSpan = document.getElementById('colors');
+    var nameText = "Sabbir Rahman"; // Second part of the name
+    var i = 0;
+    var typingEffect = setInterval(function () {
+      if (i < nameText.length) {
+        nameSpan.textContent += nameText.charAt(i);
+        i++;
+      } else {
+        clearInterval(typingEffect);
+      }
+    }, 200); // Adjust the typing speed by changing the delay (in milliseconds)
+  });
+</script>
+
+</body>
+</html>
