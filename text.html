@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text and Image Layout with Typing Animation</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('2560x1440-blue-stained-glass-free-website-background-image.jpg');
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            width: 80%;
+        }
+
+        .left-side,
+        .right-side {
+            text-align: center;
+        }
+
+        .right-side {
+            position: relative;
+            margin-bottom: 20px;
+            /* Added margin for spacing */
+        }
+
+        .right-side img {
+            width: 16em;
+            height: 16em;
+            object-fit: cover;
+            border-radius: 50%;
+            animation: slideInImage 2s ease forwards;
+        }
+
+        #colors {
+            color: orange;
+        }
+
+        .hs {
+            font-size: 48px;
+            overflow: hidden;
+            white-space: nowrap;
+            animation: slideInText 1s ease forwards;
+            margin: 0;
+            /* Reset margin to remove any default margin */
+            margin-bottom: 100px;
+            /* Adjust margin-top for spacing */
+        }
+
+        .left-side {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        @keyframes slideInText {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInImage {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .navbar {
+            margin-bottom: 20px;
+            animation: slideInNavbar 1s ease forwards;
+        }
+
+        /* Animation for the navbar */
+        @keyframes slideInNavbar {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .navbar-nav a {
+            transition: color 0.3s;
+        }
+
+        .navbar-nav a:hover {
+            color: orange;
+        }
+
+        /* Circular wave animation */
+        .right-side::before,
+        .right-side::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            animation: circular-wave 4s infinite;
+        }
+
+        .right-side::before {
+            animation-delay: -1s;
+        }
+
+        @keyframes circular-wave {
+            0% {
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(-50%, -50%) scale(2);
+                opacity: 0;
+            }
+        }
+
+        /* Straight wave background */
+        body::before,
+        body::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 100%);
+        }
+
+        body::after {
+            top: auto;
+            bottom: 0;
+            background-image: linear-gradient(to left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 100%);
+        }
+
+        /* About Section */
+        .about-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: left;
+            margin-top: 50px;
+            /* Adjust margin as needed */
+        }
+
+        .about-section img {
+            width: 200px;
+            /* Adjust image width as needed */
+            height: 200px;
+            /* Adjust image height as needed */
+            border-radius: 50%;
+            margin-right: 20px;
+            /* Adjust spacing between image and text */
+        }
+
+        .about-section p {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-link" href="#">Home</a>
+                        <a class="nav-link" href="#">About</a>
+                        <a class="nav-link" href="#">What I do</a>
+                        <a class="nav-link" href="#">Disabled</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container ">
+        <div class="right-side">
+            <img src="pic.jpg" alt="Sample Image" class="img-fluid">
+        </div>
+        <div class="left-side">
+            <h2 class="hs">Mohammad <span id="colors"></span></h2>
+        </div>
+    </div>
+
+    <!-- About Section -->
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var nameSpan = document.getElementById('colors');
+            var nameText = "Sabbir Rahman"; // Second part of the name
+            var i = 0;
+            var typingEffect = setInterval(function () {
+                if (i < nameText.length) {
+                    nameSpan.textContent += nameText.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(typingEffect);
+                }
+            }, 200);
+        });
+
+        // Delay circular wave animation by 10 seconds
+        setTimeout(function () {
+            document.querySelector('.right-side::before').style.animationDelay = "10s";
+        }, 0); // Adjust delay time as needed
+    </script>
+
+</body>
+
+</html>
